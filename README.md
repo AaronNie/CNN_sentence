@@ -1,18 +1,21 @@
 ## Convolutional Neural Networks for Sentence Classification
 Code for the paper [Convolutional Neural Networks for Sentence Classification](http://arxiv.org/abs/1408.5882) (EMNLP 2014).
+卷积神经网络用于句子分类
+程序是服务于论文《EMNLP 2014 Convolutional Neural Networks for Sentence Classification》
 
 Runs the model on Pang and Lee's movie review dataset (MR in the paper).
 Please cite the original paper when using the data.
+这个模型是基于电影的评论数据的，当使用这些数据时请引用原始的论文
 
 ### Requirements
 Code is written in Python (2.7) and requires Theano (0.7).
-
+代码需要Python2.7 以及theano0.7
 Using the pre-trained `word2vec` vectors will also require downloading the binary file from
 https://code.google.com/p/word2vec/
+需要使用到已经事先训练好的词向量文件。
 
-
-### Data Preprocessing
-To process the raw data, run
+### Data Preprocessing 数据预处理
+To process the raw data, run 使用以下命令来处理原始数据
 
 ```
 python process_data.py path
@@ -21,11 +24,13 @@ python process_data.py path
 where path points to the word2vec binary file (i.e. `GoogleNews-vectors-negative300.bin` file). 
 This will create a pickle object called `mr.p` in the same folder, which contains the dataset
 in the right format.
+path 要指向word2vec产生的二进制文件。
+将会在同一个目录下产生一个mr.p文件
 
 Note: This will create the dataset with different fold-assignments than was used in the paper.
 You should still be getting a CV score of >81% with CNN-nonstatic model, though.
-
-### Running the models (CPU)
+产生的结果可能与文章中给出的有出入
+### Running the models (CPU) 使用cpu来运行模型
 Example commands:
 
 ```
@@ -36,7 +41,7 @@ THEANO_FLAGS=mode=FAST_RUN,device=cpu,floatX=float32 python conv_net_sentence.py
 
 This will run the CNN-rand, CNN-static, and CNN-nonstatic models respectively in the paper.
 
-### Using the GPU
+### Using the GPU 使用gpu来运行模型，产生10倍到20倍的加速，高度推荐
 GPU will result in a good 10x to 20x speed-up, so it is highly recommended. 
 To use the GPU, simply change `device=cpu` to `device=gpu` (or whichever gpu you are using).
 For example:
